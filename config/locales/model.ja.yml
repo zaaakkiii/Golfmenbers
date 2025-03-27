@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    attributes:
+      golf_course:
+        name: ゴルフ場
+        caption: ゴルフ場概要
+        body: 感想
+        address: 住所
+        star: 評価
