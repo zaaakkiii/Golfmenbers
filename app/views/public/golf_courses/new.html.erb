@@ -2,44 +2,8 @@
   <div class="col-md-6 offset-md-3 col-lg-4 offset-lg-4">
 
     <h2 class="mt-5 mb-3 text-center">ゴルフ場</h2>
-
-    <%= form_with model: @golf_course do |f| %>
-      <%= render "layouts/error_messages", model: f.object %>
-
-      <div class="mb-2">
-        <%= f.label :name %>
-        <%= f.text_field :name, class: "form-control" %>
-      </div>
-
-      <div class="mb-2">
-        <%= f.label :image %>
-        <%= f.file_field :image, class: "form-control" %>
-      </div>
-
-
-      <div class="mb-2">
-        <%= f.label :caption %>
-        <%= f.text_area :caption, class: "form-control" %>
-      </div>
-
-      <div class="mb-2">
-        <%= f.label :body %>
-        <%= f.text_area :body, class: "form-control" %>
-      </div>
-      
-      <div class="mb-2">
-        <%= f.label :address %>
-        <%= f.text_field :address, class: "form-control" %>
-      </div>
-
-      <div class="mb-2">
-        <%= f.label :star %>
-        <%= f.select :star, (1..5), { include_blank: "--" }, { class: "form-control" } %>
-      </div>
-
-      <div class="my-4">
-        <%= f.submit "登録", class: "btn btn-primary btn-block" %>
-      </div>
-    <% end %>
+    <%= render "form", golf_course: @golf_course %>
   </div>
 </div>
+
+<%= link_to "一覧へ戻る", golf_courses_path, class: "btn btn-secondary" %>

@@ -1,2 +1,9 @@
-<h1>Public::GolfCourses#edit</h1>
-<p>Find me in app/views/public/golf_courses/edit.html.erb</p>
+<div class="row">
+  <div class="col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+
+    <h2 class="mt-5 mb-3 text-center">ゴルフ場 編集</h2>
+    <%= render "form", golf_course: @golf_course %>
+  </div>
+</div>
+
+<%= link_to "一覧へ戻る", golf_courses_path, class: "btn btn-secondary" %>
