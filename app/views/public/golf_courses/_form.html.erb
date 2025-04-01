@@ -19,6 +19,11 @@
     <%= f.label :body %>
     <%= f.text_area :body, class: "form-control" %>
   </div>
+
+  <div class="mb-2">
+    <%= f.label :zipcode %>
+    <%= text_field_tag :zipcode, nil, class: "form-control" %>
+  </div>
   
   <div class="mb-2">
     <%= f.label :address %>
@@ -35,3 +40,4 @@
   </div>
 <% end %>
 
+<%= javascript_pack_tag "jpostal",  'data-turbolinks-track': 'reload' %>

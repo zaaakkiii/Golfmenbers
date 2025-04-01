@@ -3,8 +3,8 @@
 <table class="table table-bordered">
   <tbody>
     <tr>
-      <th><%= t "activerecord.attributes.golf_course.name" %></th>
-      <td><%= @golf_course.name %></td>
+      <th width="30%"><%= t "activerecord.attributes.golf_course.name" %></th>
+      <td width="70%"><%= @golf_course.name %></td>
     </tr>
     <tr>
       <th><%= t "activerecord.attributes.golf_course.image" %></th>
@@ -26,6 +26,11 @@
       <th><%= t "activerecord.attributes.golf_course.body" %></th>
       <td><%= @golf_course.body %></td>
     </tr>
+    <tr>
+      <td colspan=2>
+        <div id="map" data-latitude=<%= @golf_course.latitude %> data-longitude=<%= @golf_course.longitude %>></div>
+      </td>
+    </tr>
   </tbody>
 </table>
  
@@ -34,3 +39,5 @@
   <%= link_to "編集", edit_golf_course_path(@golf_course), class: "btn btn-warning" %>
   <%= link_to "削除", @golf_course, method: :delete, data: { confirm: "本当に削除しますか" }, class: "btn btn-danger" %>
 <% end %>
+
+<%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
