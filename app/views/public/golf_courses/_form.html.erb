@@ -21,7 +21,7 @@
   </div>
 
   <div class="mb-2">
-    <%= f.label :zipcode %>
+    <%= f.label :zipcode, "郵便番号" %>
     <%= text_field_tag :zipcode, nil, class: "form-control" %>
   </div>
   
@@ -32,12 +32,21 @@
 
   <div class="mb-2">
     <%= f.label :star %>
-    <%= f.select :star, (1..5), { include_blank: "--" }, { class: "form-control" } %>
+    <div id="star"></div>
   </div>
 
   <div class="my-4">
     <%= f.submit "登録", class: "btn btn-primary btn-block" %>
   </div>
 <% end %>
+
+<script>
+  $('#star').raty({                                 
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    scoreName: 'golf_course[star]',
+    score: <%= @golf_course.star || 0 %>
+  });
+</script>
 
 <%= javascript_pack_tag "jpostal",  'data-turbolinks-track': 'reload' %>

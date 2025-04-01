@@ -20,24 +20,43 @@
     </tr>
     <tr>
       <th><%= t "activerecord.attributes.golf_course.star" %></th>
-      <td><%= @golf_course.star %></td>
+      <td>
+        <% if @golf_course.star %>
+          <div id="star"></div>
+        <% else %>
+          未評価
+        <% end %>
+      </td>
     </tr>
     <tr>
       <th><%= t "activerecord.attributes.golf_course.body" %></th>
       <td><%= @golf_course.body %></td>
     </tr>
-    <tr>
-      <td colspan=2>
-        <div id="map" data-latitude=<%= @golf_course.latitude %> data-longitude=<%= @golf_course.longitude %>></div>
-      </td>
-    </tr>
+    <% if @golf_course.latitude.present? && @golf_course.longitude.present? %>
+      <tr>
+        <td colspan=2>
+          <div id="map" data-latitude=<%= @golf_course.latitude %> data-longitude=<%= @golf_course.longitude %>></div>
+        </td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
  
 <%= link_to "一覧へ戻る", golf_courses_path, class: "btn btn-secondary" %>
 <% if current_user == @golf_course.user %>
-  <%= link_to "編集", edit_golf_course_path(@golf_course), class: "btn btn-warning" %>
+  <%= link_to "編集", edit_golf_course_path(@golf_course), data: { turbolinks: false }, class: "btn btn-warning" %>
   <%= link_to "削除", @golf_course, method: :delete, data: { confirm: "本当に削除しますか" }, class: "btn btn-danger" %>
 <% end %>
 
-<%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
+<script>
+  $('#star').raty({                                 
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    readOnly: true,
+    score: <%= @golf_course.star || 0 %>,  
+  });
+</script>
+
+<% if @golf_course.latitude.present? && @golf_course.longitude.present? %>
+  <%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
+<% end %>

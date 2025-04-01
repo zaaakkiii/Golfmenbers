@@ -13,10 +13,27 @@
       <tr>
         <td><%= image_tag golf_course.image, style: "width:100px" if golf_course.image.attached? %></td>
         <td><%= golf_course.name %></td>
-        <td><%= golf_course.star %></td>
+        <td>
+          <% if golf_course.star %>
+            <div id='star_<%= golf_course.id %>'></div>
+          <% else %>
+            未評価
+          <% end %>
+        </td>
         <td><%= golf_course.address %></td>
         <td><%= link_to "詳細", golf_course, class: "btn btn-primary" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<script>
+  <% golf_courses.each do |golf_course| %>
+    $('#star_<%= golf_course.id %>').raty({                                 
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      readOnly: true,
+      score: <%= golf_course.star || 0 %>
+    });
+  <% end %>
+</script>
