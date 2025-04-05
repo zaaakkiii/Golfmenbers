@@ -1,0 +1,5 @@
+<% if current_user.favorite?(golf_course) %>
+  <%= link_to "解除", golf_course_favorites_path(golf_course), method: :delete, class: "btn btn-danger" %>
+<% else %>
+  <%= link_to "いいね", golf_course_favorites_path(golf_course), method: :post, class: "btn btn-primary" %>
+<% end %>

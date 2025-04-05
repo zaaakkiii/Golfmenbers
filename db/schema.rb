@@ -41,18 +41,23 @@ ActiveRecord::Schema.define(version: 2025_03_23_154837) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "reviwe_id"
+    t.integer "user_id", null: false
+    t.integer "golf_course_id", null: false
     t.text "body"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["golf_course_id"], name: "index_comments_on_golf_course_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "reviwe_id"
+    t.integer "user_id", null: false
+    t.integer "golf_course_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["golf_course_id"], name: "index_favorites_on_golf_course_id"
+    t.index ["user_id", "golf_course_id"], name: "index_favorites_on_user_id_and_golf_course_id", unique: true
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "golf_courses", force: :cascade do |t|
@@ -83,4 +88,8 @@ ActiveRecord::Schema.define(version: 2025_03_23_154837) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comments", "golf_courses"
+  add_foreign_key "comments", "users"
+  add_foreign_key "favorites", "golf_courses"
+  add_foreign_key "favorites", "users"
 end

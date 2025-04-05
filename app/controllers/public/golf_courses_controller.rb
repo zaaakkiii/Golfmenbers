@@ -8,6 +8,7 @@ class Public::GolfCoursesController < ApplicationController
 
   def show
     @golf_course = GolfCourse.find(params[:id])
+    @comment = Comment.new
   end
 
   def new

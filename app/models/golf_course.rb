@@ -7,6 +7,9 @@ class GolfCourse < ApplicationRecord
 
   geocoded_by :address
   after_validation :geocode
+
+  has_many :favorites, dependent: :destroy
+  has_many :comments, dependent: :destroy
 end
 # t.string "name"
 # t.text "caption"

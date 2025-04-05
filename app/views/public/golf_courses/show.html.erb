@@ -1,4 +1,7 @@
-<h1>ゴルフ場詳細</h1>
+<div class="d-flex justify-content-between">
+  <h1>ゴルフ場詳細</h1>
+  <div><%= render "public/favorites/favorite_button", golf_course: @golf_course %></div>
+</div>
 
 <table class="table table-bordered">
   <tbody>
@@ -47,6 +50,21 @@
   <%= link_to "編集", edit_golf_course_path(@golf_course), data: { turbolinks: false }, class: "btn btn-warning" %>
   <%= link_to "削除", @golf_course, method: :delete, data: { confirm: "本当に削除しますか" }, class: "btn btn-danger" %>
 <% end %>
+<div>
+  <p>コメント件数：<%= @golf_course.comments.count %></p>
+  <% @golf_course.comments.each do |comment| %>
+    <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.body %>
+     <% if comment.user == current_user %>
+      <%= link_to "削除", public_golf_course_comment_path(@golf_course, comment), method: :delete %>
+    <% end %>
+  <% end %>
+</div>
+<div>
+  <%= form_with model: [@golf_course, @comment] , url:  public_golf_course_comments_path(@golf_course) do |f| %>
+    <%= f.text_area :body, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
+</div>
 
 <script>
   $('#star').raty({                                 
