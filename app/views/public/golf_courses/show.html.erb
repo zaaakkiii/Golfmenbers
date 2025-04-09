@@ -55,12 +55,12 @@
   <% @golf_course.comments.each do |comment| %>
     <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.body %>
      <% if comment.user == current_user %>
-      <%= link_to "削除", public_golf_course_comment_path(@golf_course, comment), method: :delete %>
+      <%= link_to "削除", golf_course_comment_path(@golf_course, comment), method: :delete %>
     <% end %>
   <% end %>
 </div>
 <div>
-  <%= form_with model: [@golf_course, @comment] , url:  public_golf_course_comments_path(@golf_course) do |f| %>
+  <%= form_with model: [@golf_course, @comment] do |f| %>
     <%= f.text_area :body, rows: '5', placeholder: "コメントをここに" %>
     <%= f.submit "送信する" %>
   <% end %>

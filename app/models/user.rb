@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { maximum: 30 }
   
   has_many :golf_courses, dependent: :destroy
-  has_many :reviwes, dependent: :destroy
+  
   has_many :favorites, dependent: :destroy
   has_many :favorite_golf_courses, through: :favorites, source: :golf_course
   has_many :comments, dependent: :destroy
