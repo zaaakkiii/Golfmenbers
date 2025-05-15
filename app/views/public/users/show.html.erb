@@ -1,9 +1,16 @@
-<h1>マイページ</h1>
+<h1 class="text-center mb-4">マイページ</h1>
 
-<div>
-  <h3><%= @user.name %></h3>
-  <%= image_tag @user.get_profile_image(100,100) %>
-  <% if @user == current_user   %>
-    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
-  <% end %>
+<div class="container d-flex justify-content-center">
+  <div class="card text-center" style="width: 18rem;">
+    <div class="card-body">
+      <h3 class="card-title"><%= @user.name %></h3>
+      <%= image_tag @user.get_profile_image(100, 100), class: "rounded-circle mb-3" %>
+      <% if @user == current_user %>
+        <p>
+          <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-primary" %>
+        </p>
+      <% end %>
+    </div>
   </div>
+</div>
+ <%= render "public/golf_courses/golf_courses", golf_courses: @golf_courses %>

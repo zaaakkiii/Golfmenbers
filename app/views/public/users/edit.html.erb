@@ -1,0 +1,21 @@
+<h1 class="text-center mb-4">プロフィール編集</h1>
+
+<div class="container d-flex justify-content-center">
+  <div class="card p-4" style="max-width: 500px; width: 100%;">
+    <%= form_with model: @user, local: true do |f| %>
+      <div class="mb-3">
+        <%= f.label :name, "Name", class: "form-label" %>
+        <%= f.text_field :name, autofocus: true, placeholder: "名前", class: "form-control" %>
+      </div>
+      
+      <div class="mb-3">
+        <%= f.label :profile_image, "ProfileImage", class: "form-label" %>
+        <%= f.file_field :profile_image, accept: "image/*", class: "form-control" %>
+      </div>
+      
+      <div class="d-grid">
+        <%= f.submit "変更を保存", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
