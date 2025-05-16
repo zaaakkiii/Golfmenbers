@@ -22,6 +22,10 @@
         </td>
         <td><%= golf_course.address %></td>
         <td><%= link_to "詳細", golf_course, class: "btn btn-primary" %></td>
+        <td> <%= link_to user_path(golf_course.user_id) do %>
+            <%= golf_course.user.name %>
+        <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

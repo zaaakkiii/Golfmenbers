@@ -4,6 +4,7 @@ class Public::GolfCoursesController < ApplicationController
 
   def index
     @golf_courses = GolfCourse.all
+    
   end
 
   def show
